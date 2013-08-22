@@ -1,0 +1,15 @@
+<!doctype html>
+<title> Glass </title>
+
+<link rel="stylesheet" href="style.css" type="text/css" /> 
+<div class="page">
+    <h1>Glass</h1>
+    <div class="metanav">
+        <% if not session[:logged_in] %>
+            <a href="/login">log in</a>
+        <% elsif %>
+            <a href="/logout">log out</a>
+        <% end %>
+    </div>
+
+</div>

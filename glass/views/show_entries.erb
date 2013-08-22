@@ -1,0 +1,35 @@
+<%= erb :page_layout %>
+
+<body>
+<% if session[:logged_in] %>
+<div id="add">
+    <form action="/add" method="post" class="add-entry">
+        <ul>
+            <li>
+            <label>Title</label>
+            <input type="text" name="title" size="30"></input>
+            </li>
+            <li>
+            <label>Text</label>
+            <textarea name="text" rows="5" cols="40"></textarea>
+            </li>
+            <input type="submit" value="Share" class="button" />
+        </ul>
+
+    </form>
+</div>
+<% end %>
+
+<div id="posts">
+    <ul class="entries">
+
+        <% for post in posts %>
+            <li>
+            <h1><%= post[0] %> > </h1>
+            <p> <%= post[1] %> </p>
+            </li>
+        <% end %>
+    </ul>
+
+</div>
+</body>

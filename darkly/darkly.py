@@ -1,7 +1,7 @@
 from __future__ import with_statement
 from contextlib import closing
 
-import sqlite3
+import sqlite3, os
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
 
 # config
@@ -21,6 +21,7 @@ def init_db():
         with app.open_resource("schema.sql") as f:
             db.cursor().executescript(f.read())
         db.commit()
+
 
 @app.before_request
 def before_request():
@@ -69,5 +70,8 @@ def logout():
     return redirect(url_for("show_entries"))
 
 if __name__ == "__main__":
+    if not os.path.isfile("darkly.db"):
+        init_db()
+
     app.run()
 

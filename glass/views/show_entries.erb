@@ -1,6 +1,5 @@
 <%= erb :page_layout %>
 
-<body>
 <% if session[:logged_in] %>
 <div id="add">
     <form action="/add" method="post" class="add-entry">
@@ -31,5 +30,6 @@
         <% end %>
     </ul>
 
+</div>
 </div>
 </body>

@@ -1,8 +1,10 @@
+require 'rubygems'
 require 'sqlite3'
 require 'sinatra'
 require 'erubis'
 
 enable :sessions
+set :bind, '0.0.0.0'
 
 $username = "admin"
 $password = "root"
@@ -11,19 +13,21 @@ def init_db()
     file = File.open('schema.sql', 'r')
     sql = file.read
     file.close
-    db = SQLite3::Database.new('test.db')
+    db = SQLite3::Database.new('glass.db')
     db.transaction
     db.execute sql
     db.commit
     db.close
 end
 
-#init_db()
+if not File.file?('glass.db') then
+    init_db()
+end
 
 $error = nil
 
 before do
-    $db = SQLite3::Database.open('test.db')
+    $db = SQLite3::Database.open('glass.db')
 end
 
 after do

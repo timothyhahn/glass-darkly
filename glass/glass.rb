@@ -4,7 +4,6 @@ require 'sinatra'
 require 'erubis'
 
 enable :sessions
-set :bind, '0.0.0.0'
 
 $username = "admin"
 $password = "root"
